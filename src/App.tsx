@@ -24,10 +24,16 @@ function App() {
 
   return (
     <div className="w-full h-screen relative">
-      <div className="flex flex-row w-full [&>*]:flex-1 fixed bottom-0 left-0 [&>*>*]:transition-all [&>*>*]:duration-200 [&>*>*]:ease-in-out pb-2">
+      <div className="flex flex-row w-full [&>*]:flex-1 fixed bottom-0 left-0 [&>*>*]:transition-all [&>*>*]:duration-200 [&>*>*]:ease-in-out  bg-white ">
         {menuItems.map((item, index) => (
           <div
-            className="flex flex-col gap-0 "
+            className={`flex flex-col gap-0 :transition-all
+            duration-200 border-b-2
+            ease-in-out ${
+              activeTab === item
+                ? ' border-primary'
+                : 'border-white'
+            }`}
             onClick={() => setActiveTab(item)}
           >
             <img
@@ -43,14 +49,14 @@ function App() {
                 activeTab === item
                   ? 'text-primary font-bold'
                   : 'text-gray-500'
-              } text-xs -mt-5`}
+              } text-xs -mt-5 pb-1`}
             >
               {item}
             </span>
           </div>
         ))}
       </div>
-      <div className="flex flex-col justify-center bg-white">
+      <div className="flex flex-col justify-center bg-white pb-40">
         <div className="bg-gradient-to-b from-primary to-primary-400 flex-col w-full h-1/5 flex justify-center items-center gap-2 pt-7 pb-5">
           <div className="flex justify-center flex-col items-center">
             <h2 className="uppercase text-white tracking-tighter font-semibold text-xs text-center">
