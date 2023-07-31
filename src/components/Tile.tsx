@@ -7,7 +7,7 @@ type Props = {
 function Tile(props: Props) {
   const { head, status, buttonValue } = props;
   return (
-    <div className="shadow-md shadow-slate-300 flex flex-col text-center justify-center rounded-lg gap-4">
+    <div className="shadow-md bg-white shadow-slate-300 flex flex-col text-center justify-center rounded-lg gap-4">
       <p className="bg-primary rounded-t-lg py-1 text-sm text-white ">
         {head}
       </p>

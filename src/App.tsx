@@ -23,8 +23,8 @@ function App() {
   ];
 
   return (
-    <div className="w-full h-screen relative">
-      <div className="flex flex-row w-full [&>*]:flex-1 fixed bottom-0 left-0 [&>*>*]:transition-all [&>*>*]:duration-200 [&>*>*]:ease-in-out  bg-white ">
+    <div className="w-full h-screen">
+      <div className="flex flex-row w-full [&>*]:flex-1 fixed bottom-0 left-0 [&>*>*]:transition-all [&>*>*]:duration-200 [&>*>*]:ease-in-out  bg-white z-50">
         {menuItems.map((item, index) => (
           <div
             className={`flex flex-col gap-0 :transition-all
@@ -57,7 +57,7 @@ function App() {
         ))}
       </div>
       <div className="flex flex-col justify-center bg-white pb-40">
-        <div className="bg-gradient-to-b from-primary to-primary-400 flex-col w-full h-1/5 flex justify-center items-center gap-2 pt-7 pb-5">
+        <div className="bg-gradient-to-b from-primary to-primary-400 flex-col w-full h-1/5 min-h-[200px] flex justify-center items-center gap-2 pt-7 pb-5 fixed top-0 left-0 z-0">
           <div className="flex justify-center flex-col items-center">
             <h2 className="uppercase text-white tracking-tighter font-semibold text-xs text-center">
               Aktuálny kredit
@@ -70,7 +70,7 @@ function App() {
             <BiPlus color="black" fontSize="1.2rem" />
           </button>
         </div>
-        <div className="flex flex-col gap-5  px-5 py-5">
+        <div className="flex flex-col gap-5 px-5 py-5 pt-[60%] ">
           <h5 className="text-center text-primary uppercase ">
             lístky
           </h5>
