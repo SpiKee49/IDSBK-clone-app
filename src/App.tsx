@@ -24,7 +24,7 @@ function App() {
 
   return (
     <div className="w-full h-screen relative">
-      <div className="flex flex-row w-full [&>*]:flex-1 absolute bottom-0 left-0 [&>*>*]:transition-all [&>*>*]:duration-200 [&>*>*]:ease-in-out pb-2">
+      <div className="flex flex-row w-full [&>*]:flex-1 fixed bottom-0 left-0 [&>*>*]:transition-all [&>*>*]:duration-200 [&>*>*]:ease-in-out pb-2">
         {menuItems.map((item, index) => (
           <div
             className="flex flex-col gap-0 "
