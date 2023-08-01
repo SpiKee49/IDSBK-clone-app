@@ -12,7 +12,7 @@ function Tile(props: Props) {
         {head}
       </p>
       <p className="text-xs font-bold">{status}</p>
-      <button className="w-[80%] mx-auto rounded-full py-3 bg-primary text-white mb-5">
+      <button className="w-[80%] mx-auto rounded-full py-3 bg-primary text-white mb-5 hover:brightness-110">
         {buttonValue}
       </button>
     </div>

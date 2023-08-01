@@ -22,8 +22,8 @@ function TableRow(props: Props) {
         <span>zľavnený</span>
         <p>{price}</p>
       </div>
-      <div className="flex justify-start w-1/6 items-center">
-        <div className="flex justify-center items-center border-[1.5px] border-primary rounded-full w-8 h-8">
+      <div className="flex justify-start w-1/6 items-center ">
+        <div className="flex hover:bg-gray-300 justify-center items-center border-[1.5px] border-primary rounded-full w-8 h-8">
           <HiOutlineShoppingCart />
         </div>
       </div>
