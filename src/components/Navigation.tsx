@@ -1,7 +1,11 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+
+import { ModalContext } from '../App';
 
 function Navigation() {
   const [activeTab, setActiveTab] = useState<string>('');
+  const modalContext = useContext(ModalContext);
+
   const menuItems = [
     'Lístky',
     'Hľadať',
@@ -17,11 +21,15 @@ function Navigation() {
     'dots',
   ];
   return (
-    <div className="flex flex-row w-full [&>*]:flex-1 fixed bottom-0 left-0 [&>*>*]:transition-all [&>*>*]:duration-200 [&>*>*]:ease-in-out  bg-white z-50">
+    <div
+      className={`flex flex-row w-full [&>*]:flex-1 bottom-0 left-0 [&>*>*]:transition-all [&>*>*]:duration-200 [&>*>*]:ease-in-out  bg-white z-40 ${
+        modalContext?.isModalOpen ? 'hidden' : 'fixed'
+      }`}
+    >
       {menuItems.map((item, index) => (
         <div
           className={`flex flex-col gap-0 :transition-all
-            duration-200 border-b-2
+            duration-200 border-b-4
             ease-in-out ${
               activeTab === item
                 ? ' border-primary'

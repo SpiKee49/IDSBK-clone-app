@@ -4,7 +4,12 @@ type Props = {
   buttonValue: string;
 };
 
+import { ModalContext } from '../App';
+import { useContext } from 'react';
+
 function Tile(props: Props) {
+  const modalContext = useContext(ModalContext);
+
   const { head, status, buttonValue } = props;
   return (
     <div className="shadow-md bg-white shadow-slate-300 flex flex-col text-center justify-center rounded-lg gap-4">
@@ -12,7 +17,11 @@ function Tile(props: Props) {
         {head}
       </p>
       <p className="text-xs font-bold">{status}</p>
-      <button className="w-[80%] mx-auto rounded-full py-3 bg-primary text-white mb-5 hover:brightness-110">
+      <button
+        type="button"
+        className="w-[80%] mx-auto rounded-full py-3 bg-primary text-white mb-5"
+        onClick={() => modalContext?.setOpenModal(true)}
+      >
         {buttonValue}
       </button>
     </div>
