@@ -27,6 +27,7 @@ function Modal() {
         } else {
             // if isModalOpen === false
             setSlideModalUp(false)
+            setSelectedItem(undefined)
             setTimeout(() => {
                 setShowModal(false)
             }, 300)
@@ -48,7 +49,7 @@ function Modal() {
                     className="w-full h-1/2"
                     onClick={() => modalContext?.setOpenModal(false)}
                 ></div>
-                <div className="rounded-t-3xl h-1/2 w-full flex flex-col gap-4 justify-start items-center bg-white">
+                <div className="rounded-t-3xl pb-10 w-full flex flex-col gap-[1em] justify-start items-center bg-white">
                     <span className="rounded-t-3xl bg-primary w-full text-center text-white py-[2px]">
                         Jednorázový cestovný lístok
                     </span>
