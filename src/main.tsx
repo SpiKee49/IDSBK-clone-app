@@ -1,6 +1,6 @@
 import './index.css'
 
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 
 import App from './App.tsx'
 import Homepage from './pages/Homepage.tsx'
@@ -13,8 +13,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<App />}>
-                    <Route index element={<Homepage />} />
-                    <Route path="/tickets" element={<Tickets />} />
+                    <Route index element={<Navigate to="/tickets" />} />
+                    <Route path="tickets" element={<Homepage />} />
+                    <Route path="buy" element={<Tickets />} />
                 </Route>
             </Routes>
         </BrowserRouter>

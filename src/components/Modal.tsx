@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from 'react'
 
 import { IconContext } from 'react-icons'
 import { ModalContext } from '../App'
+import { useNavigate } from 'react-router-dom'
 
 function Modal() {
     const modalContext = useContext(ModalContext)
@@ -13,6 +14,7 @@ function Modal() {
         'Batožina / pes',
         'Bratislava - Hainburg',
     ]
+    const navigate = useNavigate()
 
     const [selectedItem, setSelectedItem] = useState<number>()
     const [slideModalUp, setSlideModalUp] = useState(false)
@@ -36,30 +38,31 @@ function Modal() {
 
     return (
         <div
-            className={`w-full h-screen z-[45] bg-black  transition-all duration-500 ease-in-out ${
+            className={`z-[45] h-screen w-full bg-black  transition-all duration-500 ease-in-out ${
                 showModal ? 'absolute bg-opacity-50' : 'hidden bg-opacity-0'
             }`}
         >
             <div
-                className={`w-full h-screen absolute z-50 flex flex-col left-0 ${
+                className={`absolute left-0 z-50 flex h-screen w-full flex-col ${
                     slideModalUp ? 'top-0' : 'top-full'
                 }  transition-all duration-500 ease-in-out`}
             >
                 <div
-                    className="w-full h-1/2"
+                    className="h-1/2 w-full"
                     onClick={() => modalContext?.setOpenModal(false)}
                 ></div>
-                <div className="rounded-t-3xl pb-10 w-full flex flex-col gap-[1em] justify-start items-center bg-white">
-                    <span className="rounded-t-3xl bg-primary w-full text-center text-white py-[2px]">
+                <div className="flex w-full flex-col items-center justify-start gap-[1em] rounded-t-3xl bg-white pb-10">
+                    <span className="w-full rounded-t-3xl bg-primary py-[2px] text-center text-white">
                         Jednorázový cestovný lístok
                     </span>
                     <IconContext.Provider
                         value={{ color: '#00a6e3', size: '25px' }}
                     >
-                        <div className="flex flex-col w-[85%]">
+                        <div className="flex w-[85%] flex-col">
                             {items.map((item, index) => (
                                 <div
-                                    className="flex flex-row items-center gap-2 h-12"
+                                    key={item}
+                                    className="flex h-12 flex-row items-center gap-2"
                                     onClick={() => setSelectedItem(index)}
                                 >
                                     {selectedItem === index ? (
@@ -74,14 +77,18 @@ function Modal() {
                     </IconContext.Provider>
                     <button
                         type="button"
-                        className="w-[90%] h-12 shadow-md rounded-full bg-primary text-white"
+                        onClick={() => {
+                            navigate('/buy')
+                            modalContext?.setOpenModal(false)
+                        }}
+                        className="h-12 w-[90%] rounded-full bg-primary text-white shadow-md"
                     >
                         Potvrdiť výber
                     </button>
                     <button
                         onClick={() => modalContext?.setOpenModal(false)}
                         type="button"
-                        className="w-[90%] h-12 shadow-md rounded-full bg-white text-primary"
+                        className="h-12 w-[90%] rounded-full bg-white text-primary shadow-md"
                     >
                         Späť
                     </button>

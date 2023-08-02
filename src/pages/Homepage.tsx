@@ -1,34 +1,27 @@
 import { BiPlus } from 'react-icons/bi'
 import CustomBodyTile from '../components/CustomBodyTile'
-import Header from '../components/Header'
 import { IconContext } from 'react-icons'
 import TableRow from '../components/TableRow'
 import Tile from '../components/Tile'
 
 function Homepage() {
     return (
-        <div className="h-full flex flex-col justify-start bg-white">
-            <Header
-                direction="col"
-                justify="justify-center"
-                items="items-center"
-                height="20%"
-                py={10}
-            >
-                <div className="flex justify-center flex-col items-center">
-                    <h2 className="uppercase text-white tracking-tighter font-semibold text-xs text-center">
+        <div className="flex h-full flex-col justify-start bg-white">
+            <div className="z-0 flex h-1/5 w-full flex-col items-center justify-center gap-5 bg-gradient-to-b from-primary to-primary-400 px-2 py-5">
+                <div className="flex flex-col items-center justify-center">
+                    <h2 className="text-center text-xs font-semibold uppercase tracking-tighter text-white">
                         Aktuálny kredit
                     </h2>
-                    <h2 className="uppercase text-white tracking-tighter font-semibold text-3xl">
+                    <h2 className="text-3xl font-semibold uppercase tracking-tighter text-white">
                         0,25€
                     </h2>
                 </div>
-                <button className="mt-1 text-black flex justify-center items-center rounded-full w-12 h-12 bg-white">
+                <button className="mt-1 flex h-12 w-12 items-center justify-center rounded-full bg-white text-black">
                     <BiPlus color="black" fontSize="1.2rem" />
                 </button>
-            </Header>
-            <div className="flex flex-col h-4/5 gap-5 px-5 py-5 pb-40 overflow-scroll">
-                <h5 className="text-center text-primary uppercase ">lístky</h5>
+            </div>
+            <div className="flex h-4/5 flex-col gap-5 overflow-scroll px-5 py-5 pb-40">
+                <h5 className="text-center uppercase text-primary ">lístky</h5>
                 <Tile
                     head="Električenka"
                     status="Nemáte kúpenú električenku"
