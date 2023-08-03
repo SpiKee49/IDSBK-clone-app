@@ -26,7 +26,6 @@ function Navigation() {
 
     useEffect(() => {
         const tab = location.pathname.split('/')[1]
-        console.log(tab)
         if (Object.keys(tabs).includes(tab)) {
             setActiveTab(tab)
         } else {
@@ -36,15 +35,15 @@ function Navigation() {
 
     return (
         <div
-            className={`flex flex-row w-full [&>*]:flex-1 bottom-0 left-0 [&>*>*]:transition-all [&>*>*]:duration-200 [&>*>*]:ease-in-out  bg-white z-40 ${
+            className={`bottom-0 left-0 z-40 flex w-full flex-row bg-white [&>*>*]:transition-all [&>*>*]:duration-200  [&>*>*]:ease-in-out [&>*]:flex-1 ${
                 modalContext?.isModalOpen ? 'hidden' : 'fixed'
             }`}
         >
             {Object.keys(tabs).map((item) => (
                 <div
                     key={item}
-                    className={`flex flex-col gap-0 :transition-all
-            duration-200 border-b-4
+                    className={`:transition-all flex flex-col gap-0
+            border-b-4 duration-200
             ease-in-out ${
                 activeTab === item ? ' border-primary' : 'border-white'
             }`}
@@ -60,9 +59,9 @@ function Navigation() {
                     <span
                         className={`text-center ${
                             activeTab === item
-                                ? 'text-primary font-bold'
+                                ? 'font-bold text-primary'
                                 : 'text-gray-500'
-                        } text-xs -mt-5 pb-1`}
+                        } -mt-5 pb-1 text-xs`}
                     >
                         {tabs[item]}
                     </span>

@@ -78,7 +78,7 @@ function Modal() {
                     <button
                         type="button"
                         onClick={() => {
-                            navigate('/buy')
+                            navigate('/tickets/buy')
                             modalContext?.setOpenModal(false)
                         }}
                         className="h-12 w-[90%] rounded-full bg-primary text-white shadow-md"
