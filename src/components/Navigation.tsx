@@ -50,7 +50,7 @@ function Navigation() {
                     onClick={() => navigate(`/${item}`)}
                 >
                     <img
-                        src={`img/${
+                        src={`/img/${
                             icons[item] + (activeTab === item ? '-active' : '')
                         }.svg`}
                         alt={icons[item]}

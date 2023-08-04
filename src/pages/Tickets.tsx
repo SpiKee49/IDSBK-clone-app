@@ -3,9 +3,11 @@ import {
     IoIosArrowDropleft,
     IoIosRemoveCircleOutline,
 } from 'react-icons/io'
-import { ReactNode, useState } from 'react'
+import { TicketContext, TicketType } from '../App'
+import { useContext, useEffect, useState } from 'react'
 
 import { BsCreditCard2Front } from 'react-icons/bs'
+import BuyButton from '../components/BuyButton'
 import { CiWallet } from 'react-icons/ci'
 import { IconContext } from 'react-icons'
 import Switch from '../components/Switch'
@@ -17,37 +19,60 @@ const tickets: { [key: string]: string } = {
     dog: 'Batožina / Pes',
 }
 
-const ticketCosts: { [key: string]: number } = {
-    basic: 1.41,
-    discount: 0.71,
-    dog: 0.49,
-}
-
 function Divider() {
     return <span className="mx-auto w-[90%] bg-gray-100 p-[0.5px]"></span>
 }
 
-function BuyButton(props: { icon: ReactNode; text: string; price?: number }) {
-    const { icon, text, price } = props
-
-    return (
-        <IconContext.Provider value={{ color: 'white' }}>
-            <div className="flex h-12 w-full flex-row items-center overflow-clip rounded-full text-white">
-                <div className="flex h-full flex-1 flex-row items-center justify-start gap-2 bg-primary pl-4 text-sm">
-                    {icon}
-                    <span>{text}</span>
-                </div>
-                <div className="flex h-full w-1/4 items-center justify-center bg-primary-700 text-center align-middle text-sm">
-                    {price && <span>{price}€</span>}
-                </div>
-            </div>
-        </IconContext.Provider>
-    )
+type Order = {
+    [key: string]: number
 }
 
 function Tickets() {
     const navigate = useNavigate()
     const [rememberCard, setRememberCard] = useState(false)
+
+    const ticketCtx = useContext(TicketContext)
+    const ticket =
+        ticketCtx?.ticket ??
+        ({
+            duration: 30,
+            basic: true,
+            zones: 2,
+            prices: {
+                basic: 0.55,
+                discount: 0.55,
+                dog: 0.55,
+            },
+        } as TicketType)
+
+    const [order, setOrder] = useState<Order>({
+        basic: ticket.basic ? 1 : 0,
+        discount: !ticket.basic ? 1 : 0,
+        dog: 0,
+    })
+    const [totalPrice, setTotalPrice] = useState<number>()
+
+    useEffect(() => {
+        const prices = ticket.prices
+        setTotalPrice(
+            prices.basic * order.basic +
+                prices.discount * order.discount +
+                order.dog * 0.55
+        )
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [order])
+
+    function updateOrder(ticket: string, value: 'add' | 'remove') {
+        const newOrder = { ...order }
+        if (value === 'remove' && order[ticket] === 0) return
+
+        if (value === 'remove' && order[ticket] > 0) {
+            newOrder[ticket] -= 1
+        } else {
+            newOrder[ticket] += 1
+        }
+        setOrder(newOrder)
+    }
 
     return (
         <div className="flex flex-col justify-center bg-white pb-40">
@@ -76,27 +101,40 @@ function Tickets() {
             </div>
             <section className="flex flex-col gap-4 px-5">
                 <div className="flex flex-row justify-between px-5 pt-2.5 font-bold leading-tight">
-                    <span>60 Minút</span>
-                    <span>Počet zón: 3</span>
+                    <span>{ticket.duration} Minút</span>
+                    <span>Počet zón: {ticket.zones}</span>
                 </div>
                 <Divider />
                 <IconContext.Provider value={{ color: '#00a6e3' }}>
-                    {Object.keys(tickets).map((ticket) => (
+                    {Object.entries(ticket.prices).map(([item, value]) => (
                         <>
-                            <div className="flex w-full flex-row items-center justify-center text-secondary">
+                            <div
+                                className={`flex w-full flex-row items-center justify-center ${
+                                    order[item] > 0
+                                        ? 'text-black'
+                                        : 'text-secondary'
+                                }`}
+                            >
                                 <div className="w-1/2 text-base">
-                                    {tickets[ticket]}
+                                    {tickets[item]}
                                 </div>
                                 <div className="item-center flex flex-1 flex-row justify-center gap-3 font-semibold">
-                                    <IoIosRemoveCircleOutline size="25px" />
-                                    <span>0x</span>
-                                    <IoIosAddCircleOutline size="25px" />
+                                    <button
+                                        onClick={() =>
+                                            updateOrder(item, 'remove')
+                                        }
+                                    >
+                                        <IoIosRemoveCircleOutline size="25px" />
+                                    </button>
+                                    <span>{order[item]}x</span>
+                                    <button
+                                        onClick={() => updateOrder(item, 'add')}
+                                    >
+                                        <IoIosAddCircleOutline size="25px" />
+                                    </button>
                                 </div>
                                 <div className="text-xs font-semibold">
-                                    {ticketCosts[ticket]
-                                        .toLocaleString()
-                                        .replace('.', ',')}
-                                    €
+                                    {value.toLocaleString().replace('.', ',')}€
                                 </div>
                             </div>
                             <Divider />
@@ -125,7 +163,7 @@ function Tickets() {
                             }}
                         />
                     }
-                    price={0.79}
+                    price={totalPrice}
                 />
                 <div className="flex flex-row items-center justify-between pr-5">
                     <div className="flex flex-col">
