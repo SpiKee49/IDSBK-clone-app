@@ -1,12 +1,13 @@
 import { BsCircle, BsCircleFill } from 'react-icons/bs'
+import { ModalContext, TicketContext } from '../App'
 import { useContext, useEffect, useState } from 'react'
 
 import { IconContext } from 'react-icons'
-import { ModalContext } from '../App'
 import { useNavigate } from 'react-router-dom'
 
 function Modal() {
     const modalContext = useContext(ModalContext)
+    const ticketContext = useContext(TicketContext)
     const items = [
         'Základné lístky',
         'Zľavnené lístky',
@@ -36,6 +37,14 @@ function Modal() {
         }
     }, [modalContext])
 
+    function updateTicketType(index: number) {
+        ticketContext?.setTicket({
+            ...ticketContext.ticket,
+            basic: index < 1,
+        })
+        setSelectedItem(index)
+    }
+
     return (
         <div
             className={`z-[45] h-screen w-full bg-black  transition-all duration-500 ease-in-out ${
@@ -63,7 +72,7 @@ function Modal() {
                                 <div
                                     key={item}
                                     className="flex h-12 flex-row items-center gap-2"
-                                    onClick={() => setSelectedItem(index)}
+                                    onClick={() => updateTicketType(index)}
                                 >
                                     {selectedItem === index ? (
                                         <BsCircleFill />
@@ -78,7 +87,7 @@ function Modal() {
                     <button
                         type="button"
                         onClick={() => {
-                            navigate('/tickets/buy')
+                            navigate('/tickets/select')
                             modalContext?.setOpenModal(false)
                         }}
                         className="h-12 w-[90%] rounded-full bg-primary text-white shadow-md"

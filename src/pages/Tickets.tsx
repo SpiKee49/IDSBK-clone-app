@@ -9,6 +9,7 @@ import { useContext, useEffect, useState } from 'react'
 import { BsCreditCard2Front } from 'react-icons/bs'
 import BuyButton from '../components/BuyButton'
 import { CiWallet } from 'react-icons/ci'
+import Divider from '../components/Divider'
 import { IconContext } from 'react-icons'
 import Switch from '../components/Switch'
 import { useNavigate } from 'react-router-dom'
@@ -17,10 +18,6 @@ const tickets: { [key: string]: string } = {
     basic: 'Základný',
     discount: 'Zľavnený',
     dog: 'Batožina / Pes',
-}
-
-function Divider() {
-    return <span className="mx-auto w-[90%] bg-gray-100 p-[0.5px]"></span>
 }
 
 type Order = {
@@ -73,6 +70,11 @@ function Tickets() {
         }
         setOrder(newOrder)
     }
+
+    // useEffect(() => {
+    //     console.log(ticket)
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [])
 
     return (
         <div className="flex flex-col justify-center bg-white pb-40">

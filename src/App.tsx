@@ -3,6 +3,7 @@ import { createContext, useState } from 'react'
 import Modal from './components/Modal'
 import Navigation from './components/Navigation'
 import { Outlet } from 'react-router-dom'
+import ticketData from './assets/tickets.json'
 
 type modalOpen = {
     isModalOpen: boolean
@@ -19,7 +20,7 @@ export type TicketType = {
     }
 }
 type Ticket = {
-    ticket?: TicketType
+    ticket: TicketType
     setTicket: (ticket: TicketType) => void
 }
 
@@ -28,7 +29,7 @@ export const TicketContext = createContext<Ticket | null>(null)
 
 function App() {
     const [modalOpen, setModalOpen] = useState(false)
-    const [ticket, setTicket] = useState<TicketType | undefined>()
+    const [ticket, setTicket] = useState<TicketType>(ticketData[0])
 
     return (
         <TicketContext.Provider

@@ -1,10 +1,19 @@
+import { useEffect, useState } from 'react'
+
 import { BiPlus } from 'react-icons/bi'
 import CustomBodyTile from '../components/CustomBodyTile'
-import { IconContext } from 'react-icons'
 import TableRow from '../components/TableRow'
+import { TicketType } from '../App'
 import Tile from '../components/Tile'
+import ticketsData from '../assets/tickets.json'
 
 function Homepage() {
+    const [ticketData, setTicketData] = useState<TicketType[]>()
+
+    useEffect(() => {
+        setTicketData(ticketsData)
+    }, [])
+
     return (
         <div className="flex h-full flex-col justify-start bg-white">
             <div className="z-0 flex h-1/5 w-full flex-col items-center justify-center gap-5 bg-gradient-to-b from-primary to-primary-400 px-2 py-5">
@@ -36,12 +45,13 @@ function Homepage() {
                     headColor="bg-secondary"
                     head="Naposledy zakúpené lístky"
                 >
-                    <IconContext.Provider value={{ color: '#00a6e3' }}>
-                        <div className="flex flex-col justify-center">
-                            <TableRow zone={2} minutes={30} price="0,49€" />
-                            <TableRow zone={3} minutes={60} price="0,79€" />
-                        </div>
-                    </IconContext.Provider>
+                    <div className="flex flex-col justify-center">
+                        {ticketData
+                            ?.slice(0, 2)
+                            .map((item) => (
+                                <TableRow ticket={{ ...item, basic: false }} />
+                            ))}
+                    </div>
                 </CustomBodyTile>
             </div>
         </div>

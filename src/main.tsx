@@ -6,6 +6,7 @@ import App from './App.tsx'
 import Homepage from './pages/Homepage.tsx'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import TicketSelect from './pages/TicketSelect.tsx'
 import Tickets from './pages/Tickets.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -15,6 +16,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                 <Route path="/" element={<App />}>
                     <Route index element={<Navigate to="/tickets" />} />
                     <Route path="tickets" element={<Homepage />} />
+                    <Route path="tickets/select" element={<TicketSelect />} />
                     <Route path="tickets/buy" element={<Tickets />} />
                 </Route>
             </Routes>

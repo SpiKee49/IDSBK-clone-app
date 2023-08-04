@@ -1,0 +1,102 @@
+[
+    {
+        "duration": 30,
+        "zones": 2,
+        "basic": true,
+        "prices": {
+            "basic": 0.97,
+            "discount": 0.49,
+            "dog": 0.49
+        }
+    },
+    {
+        "duration": 60,
+        "zones": 3,
+        "basic": true,
+        "prices": {
+            "basic": 1.41,
+            "discount": 0.71,
+            "dog": 0.49
+        }
+    },
+    {
+        "duration": 60,
+        "zones": 4,
+        "basic": true,
+        "prices": {
+            "basic": 1.79,
+            "discount": 0.9,
+            "dog": 0.49
+        }
+    },
+    {
+        "duration": 90,
+        "zones": 5,
+        "basic": true,
+        "prices": {
+            "basic": 2.24,
+            "discount": 1.12,
+            "dog": 0.49
+        }
+    },
+    {
+        "duration": 90,
+        "zones": 6,
+        "basic": true,
+        "prices": {
+            "basic": 2.97,
+            "discount": 1.34,
+            "dog": 0.49
+        }
+    },
+    {
+        "duration": 120,
+        "zones": 7,
+        "basic": true,
+        "prices": {
+            "basic": 2.97,
+            "discount": 1.49,
+            "dog": 0.49
+        }
+    },
+    {
+        "duration": 120,
+        "zones": 8,
+        "basic": true,
+        "prices": {
+            "basic": 3.22,
+            "discount": 1.61,
+            "dog": 0.49
+        }
+    },
+    {
+        "duration": 150,
+        "zones": 9,
+        "basic": true,
+        "prices": {
+            "basic": 3.62,
+            "discount": 1.81,
+            "dog": 0.49
+        }
+    },
+    {
+        "duration": 150,
+        "zones": 10,
+        "basic": true,
+        "prices": {
+            "basic": 4.02,
+            "discount": 2.01,
+            "dog": 0.49
+        }
+    },
+    {
+        "duration": 180,
+        "zones": 11,
+        "basic": true,
+        "prices": {
+            "basic": 4.42,
+            "discount": 2.21,
+            "dog": 0.49
+        }
+    }
+]
