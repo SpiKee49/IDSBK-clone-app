@@ -77,7 +77,7 @@ function Tickets() {
     // }, [])
 
     return (
-        <div className="flex flex-col justify-center bg-white pb-40">
+        <div className="flex flex-col items-center justify-center bg-white pb-40">
             <div className="z-0 flex h-1/5 w-full flex-col items-center justify-center gap-5 bg-gradient-to-b from-primary to-primary-400 px-2 py-5">
                 <IconContext.Provider value={{ color: 'white' }}>
                     <div className=" relative flex w-full flex-row items-center justify-center">
@@ -101,7 +101,7 @@ function Tickets() {
                     Nad vinicami
                 </button>
             </div>
-            <section className="flex flex-col gap-4 px-5">
+            <section className="flex w-full flex-col gap-4 px-5 lg:w-1/3">
                 <div className="flex flex-row justify-between px-5 pt-2.5 font-bold leading-tight">
                     <span>{ticket.duration} Minút</span>
                     <span>Počet zón: {ticket.zones}</span>
@@ -111,6 +111,7 @@ function Tickets() {
                     {Object.entries(ticket.prices).map(([item, value]) => (
                         <>
                             <div
+                                key={value}
                                 className={`flex w-full flex-row items-center justify-center ${
                                     order[item] > 0
                                         ? 'text-black'

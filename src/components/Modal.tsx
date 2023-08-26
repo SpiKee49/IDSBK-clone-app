@@ -47,20 +47,20 @@ function Modal() {
 
     return (
         <div
-            className={`z-[45] h-screen w-full bg-black  transition-all duration-500 ease-in-out ${
+            className={`z-[45] h-screen w-full bg-black transition-all  duration-500 ease-in-out ${
                 showModal ? 'absolute bg-opacity-50' : 'hidden bg-opacity-0'
             }`}
         >
             <div
                 className={`absolute left-0 z-50 flex h-screen w-full flex-col ${
                     slideModalUp ? 'top-0' : 'top-full'
-                }  transition-all duration-500 ease-in-out`}
+                }  items-center transition-all duration-500 ease-in-out`}
             >
                 <div
-                    className="h-1/2 w-full"
+                    className="h-1/2 w-full lg:h-1/3"
                     onClick={() => modalContext?.setOpenModal(false)}
                 ></div>
-                <div className="flex w-full flex-col items-center justify-start gap-[1em] rounded-t-3xl bg-white pb-10">
+                <div className="flex w-full flex-col items-center justify-start gap-[1em] rounded-t-3xl bg-white pb-10 lg:w-1/3 lg:rounded-b-3xl ">
                     <span className="w-full rounded-t-3xl bg-primary py-[2px] text-center text-white">
                         Jednorázový cestovný lístok
                     </span>
@@ -71,7 +71,7 @@ function Modal() {
                             {items.map((item, index) => (
                                 <div
                                     key={item}
-                                    className="flex h-12 flex-row items-center gap-2"
+                                    className="flex h-12 flex-row items-center gap-2 hover:cursor-pointer"
                                     onClick={() => updateTicketType(index)}
                                 >
                                     {selectedItem === index ? (

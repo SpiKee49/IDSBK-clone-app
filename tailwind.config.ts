@@ -17,6 +17,7 @@ export default {
                     700: '#007ba5',
                 },
                 secondary: '#aaaaaa',
+                success: '#79d16d',
             },
         },
     },

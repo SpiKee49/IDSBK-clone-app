@@ -35,15 +35,15 @@ function Navigation() {
 
     return (
         <div
-            className={`bottom-0 left-0 z-40 flex w-full flex-row bg-white [&>*>*]:transition-all [&>*>*]:duration-200  [&>*>*]:ease-in-out [&>*]:flex-1 ${
+            className={`bottom-0 left-0 z-40 flex max-h-[100px] w-full flex-row bg-white [&>*>*]:transition-all [&>*>*]:duration-200  [&>*>*]:ease-in-out [&>*]:flex-1 ${
                 modalContext?.isModalOpen ? 'hidden' : 'fixed'
             }`}
         >
             {Object.keys(tabs).map((item) => (
                 <div
                     key={item}
-                    className={`:transition-all flex flex-col gap-0
-            border-b-4 duration-200
+                    className={`flex h-full flex-col items-center justify-center gap-6
+            border-b-4 transition-all duration-200
             ease-in-out ${
                 activeTab === item ? ' border-primary' : 'border-white'
             }`}
@@ -54,7 +54,7 @@ function Navigation() {
                             icons[item] + (activeTab === item ? '-active' : '')
                         }.svg`}
                         alt={icons[item]}
-                        className="scale-[40%]"
+                        className="w-2/5 max-w-[50px]"
                     />
                     <span
                         className={`text-center ${

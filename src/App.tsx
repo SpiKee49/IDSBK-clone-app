@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
 
 import Modal from './components/Modal'
 import Navigation from './components/Navigation'
@@ -18,6 +18,8 @@ export type TicketType = {
         discount: number
         dog: number
     }
+    active?: boolean
+    setAt?: Date
 }
 type Ticket = {
     ticket: TicketType
@@ -30,6 +32,17 @@ export const TicketContext = createContext<Ticket | null>(null)
 function App() {
     const [modalOpen, setModalOpen] = useState(false)
     const [ticket, setTicket] = useState<TicketType>(ticketData[0])
+
+    useEffect(() => {
+        if (ticket.active && !ticket.setAt) {
+            setTimeout(
+                () => {
+                    setTicket({ ...ticket, active: false, setAt: new Date() })
+                },
+                ticket.duration * 60 * 1000
+            )
+        }
+    }, [ticket])
 
     return (
         <TicketContext.Provider

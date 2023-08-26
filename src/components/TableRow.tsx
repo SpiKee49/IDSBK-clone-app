@@ -36,7 +36,7 @@ function TableRow(props: Props) {
             <div className="flex w-1/6 items-center justify-start ">
                 <div
                     onClick={() => buyTicket(ticket)}
-                    className="flex h-8 w-8 items-center justify-center rounded-full border-[1.5px] border-primary hover:bg-gray-300"
+                    className="flex h-8 w-8 items-center justify-center rounded-full border-[1.5px] border-primary hover:cursor-pointer hover:bg-gray-300"
                 >
                     <IconContext.Provider value={{ color: '#00a6e3' }}>
                         <HiOutlineShoppingCart />

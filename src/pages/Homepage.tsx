@@ -1,21 +1,33 @@
-import { useEffect, useState } from 'react'
+import { TicketContext, TicketType } from '../App'
+import { useContext, useEffect, useState } from 'react'
 
 import { BiPlus } from 'react-icons/bi'
 import CustomBodyTile from '../components/CustomBodyTile'
 import TableRow from '../components/TableRow'
-import { TicketType } from '../App'
 import Tile from '../components/Tile'
 import ticketsData from '../assets/tickets.json'
 
 function Homepage() {
     const [ticketData, setTicketData] = useState<TicketType[]>()
+    const ticketContext = useContext(TicketContext)
+
+
+    const countdown - 
+
+
 
     useEffect(() => {
         setTicketData(ticketsData)
     }, [])
 
+    useEffect(()=>{
+        if(ticketContext?.ticket.active){
+
+        }
+    },[ticketContext?.ticket])
+
     return (
-        <div className="flex h-full flex-col justify-start bg-white">
+        <div className="flex h-full flex-col items-center justify-start bg-white">
             <div className="z-0 flex h-1/5 w-full flex-col items-center justify-center gap-5 bg-gradient-to-b from-primary to-primary-400 px-2 py-5">
                 <div className="flex flex-col items-center justify-center">
                     <h2 className="text-center text-xs font-semibold uppercase tracking-tighter text-white">
@@ -29,18 +41,21 @@ function Homepage() {
                     <BiPlus color="black" fontSize="1.2rem" />
                 </button>
             </div>
-            <div className="flex h-4/5 flex-col gap-5 overflow-scroll px-5 py-5 pb-40">
+            <div className="no-scrollbar flex h-4/5 w-full flex-col gap-5 overflow-scroll overflow-y-scroll px-5 py-5 pb-40 lg:w-1/2">
                 <h5 className="text-center uppercase text-primary ">lístky</h5>
                 <Tile
                     head="Električenka"
                     status="Nemáte kúpenú električenku"
                     buttonValue="Kúpiť"
                 />
-                <Tile
-                    head="Jednorazový lístok"
-                    status="Nemáte žiadny aktíny lístok"
-                    buttonValue="Kúpiť lístok"
-                />
+                <div className="no-scrollbar flex flex-row overflow-x-scroll">
+                    <Tile
+                        head="Jednorazový lístok"
+                        status="Nemáte žiadny aktíny lístok"
+                        buttonValue="Kúpiť lístok"
+                    />
+                </div>
+
                 <CustomBodyTile
                     headColor="bg-secondary"
                     head="Naposledy zakúpené lístky"
