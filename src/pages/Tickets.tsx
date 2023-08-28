@@ -12,6 +12,7 @@ import { CiWallet } from 'react-icons/ci'
 import Divider from '../components/Divider'
 import { IconContext } from 'react-icons'
 import Switch from '../components/Switch'
+import dayjs from 'dayjs'
 import { useNavigate } from 'react-router-dom'
 
 const tickets: { [key: string]: string } = {
@@ -166,6 +167,16 @@ function Tickets() {
                             }}
                         />
                     }
+                    onClick={() => {
+                        ticketCtx?.setTicket({
+                            ...ticket,
+                            active: true,
+                            setAt: dayjs()
+                                .add(ticket.duration, 'minutes')
+                                .toDate(),
+                        })
+                        navigate('/')
+                    }}
                     price={totalPrice}
                 />
                 <div className="flex flex-row items-center justify-between pr-5">

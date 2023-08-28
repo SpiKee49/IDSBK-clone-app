@@ -1,12 +1,20 @@
 import { IconContext } from 'react-icons'
 import { ReactNode } from 'react'
 
-function BuyButton(props: { icon: ReactNode; text: string; price?: number }) {
-    const { icon, text, price } = props
+function BuyButton(props: {
+    icon: ReactNode
+    text: string
+    price?: number
+    onClick?: () => void
+}) {
+    const { icon, text, price, onClick } = props
 
     return (
         <IconContext.Provider value={{ color: 'white' }}>
-            <div className="flex h-12 w-full flex-row items-center overflow-clip rounded-full text-white">
+            <div
+                className="flex h-12 w-full flex-row items-center overflow-clip rounded-full text-white"
+                onClick={onClick}
+            >
                 <div className="flex h-full flex-1 flex-row items-center justify-start gap-2 bg-primary pl-4 text-sm">
                     {icon}
                     <span>{text}</span>

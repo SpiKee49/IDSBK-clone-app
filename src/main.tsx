@@ -19,8 +19,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                     <Route path="tickets" element={<Homepage />} />
                     <Route path="tickets/select" element={<TicketSelect />} />
                     <Route path="tickets/buy" element={<Tickets />} />
+                    <Route path="/search" element={<SearchPage />} />
                 </Route>
-                <Route path="/search" element={<SearchPage />} />
             </Routes>
         </BrowserRouter>
     </React.StrictMode>
